@@ -1,0 +1,23 @@
+/* pages/data/equipment/equipment.wxss */
+.blueList {
+  width: 100%;
+  display: inline-flex;
+  flex-direction: column;
+}
+.blueList view {
+  padding: 20rpx;
+  background-color: #ddd;
+}
+.blueList view .label {
+  display: block;
+  float: left;
+  text-align: center;
+  margin-left: 20rpx;
+}
+.blueList view .connectBtn {
+  float: right;
+  width: 20% !important;
+}
+.blueList view .active {
+  background-color: red !important;
+}

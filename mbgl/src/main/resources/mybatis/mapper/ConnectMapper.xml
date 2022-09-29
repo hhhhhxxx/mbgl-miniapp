@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--绑定一个对应的Dao/Mapper接口-->
+<mapper namespace="com.hhhhhx.mapper.ConnectMapper">
+
+    <select id="selectConnect" resultType="connect">
+        select * from mbgl.connect where doctorId = #{doctorId} and patientId = #{patientId}
+    </select>
+
+    <insert id="addConnect" parameterType="connect">
+        insert into mbgl.connect(doctorId, patientId,state)
+        VALUES (#{doctorId},#{patientId},#{state})
+    </insert>
+
+    <delete id="deleteConnect" parameterType="connect">
+        delete from mbgl.connect where doctorId = #{doctorId} and patientId = #{patientId}
+    </delete>
+
+    <update id="updateConnect" parameterType="connect">
+        update mbgl.connect set state = #{state} where doctorId = #{doctorId} and patientId = #{patientId}
+    </update>
+
+    <select id="getDoctorMyPatient" parameterType="int" resultMap="doctorPatient">
+        select d.id did, p.id pid, p.name pname, p.age page,
+               p.sex psex,p.phone pphone,p.address paddress,
+               p.history phistory,p.allergy pallergy from mbgl.doctor d
+        INNER JOIN mbgl.connect c on c.doctorId = d.id
+        INNER JOIN mbgl.patient p on c.patientId = p.id
+        where d.id = #{id} and c.state = '1'
+    </select>
+    
+    <resultMap id="doctorPatient" type="doctorPatient">
+        <result property="id" column="did"></result>
+        <collection property="myPatientList" ofType="patient">
+            <result property="id" column="pid"></result>
+            <result property="name" column="pname"></result>
+            <result property="age" column="page"></result>
+            <result property="sex" column="psex"></result>
+            <result property="phone" column="pphone"></result>
+            <result property="address" column="paddress"></result>
+            <result property="history" column="phistory"></result>
+            <result property="allergy" column="pallergy"></result>
+        </collection>
+    </resultMap>
+
+    <select id="getApplyPatient" parameterType="int" resultMap="doctorPatient">
+        select d.id did, p.id pid, p.name pname, p.age page,
+               p.sex psex,p.phone pphone,p.address paddress,
+               p.history phistory,p.allergy pallergy from mbgl.doctor d
+        INNER JOIN mbgl.connect c on c.doctorId = d.id
+        INNER JOIN mbgl.patient p on c.patientId = p.id
+        where d.id = #{id} and c.state = '2'
+    </select>
+
+
+    <!--<resultMap id="doctorPatient" type="doctorPatient">-->
+    <!--    <result property="id" column="did"></result>-->
+    <!--    <collection property="myPatientList" ofType="patient">-->
+    <!--        <result property="id" column="pid"></result>-->
+    <!--        <result property="name" column="pname"></result>-->
+    <!--        <result property="age" column="page"></result>-->
+    <!--        <result property="sex" column="psex"></result>-->
+    <!--        <result property="phone" column="pphone"></result>-->
+    <!--        <result property="address" column="paddress"></result>-->
+    <!--        <result property="history" column="phistory"></result>-->
+    <!--        <result property="allergy" column="pallergy"></result>-->
+    <!--    </collection>-->
+    <!--</resultMap>-->
+
+
+    <select id="getPatientMyDocotr" parameterType="int" resultMap="patientDoctor">
+        select p.id pid, d.id did, d.name dname, d.age dage, d.sex dsex,
+               d.phone dphone, d.room droom, d.jobYear djobYear,
+               d.position dposition, d.hospital dhospital
+        from mbgl.patient p
+        INNER JOIN mbgl.connect c on c.patientId = p.id
+        INNER JOIN mbgl.doctor d on c.doctorId = d.id
+        where p.id = #{id} and c.state = '1'
+    </select>
+
+    <resultMap id="patientDoctor" type="patientDoctor">
+        <result property="id" column="pid"></result>
+        <collection property="myDoctorList" ofType="doctor">
+            <result property="id" column="did"></result>
+            <result property="name" column="dname"></result>
+            <result property="age" column="dage"></result>
+            <result property="sex" column="dsex"></result>
+            <result property="phone" column="dphone"></result>
+            <result property="room" column="droom"></result>
+            <result property="jobYear" column="djobYear"></result>
+            <result property="position" column="dposition"></result>
+            <result property="hospital" column="dhospital"></result>
+        </collection>
+    </resultMap>
+
+
+
+
+</mapper>

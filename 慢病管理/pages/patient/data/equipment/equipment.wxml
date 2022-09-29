@@ -1,0 +1,10 @@
+<mp-toptips msg="{{info}}" type="error" show="{{info}}" delay="1500"></mp-toptips>
+<view>下拉刷新设备列表</view>
+<view>当前蓝牙设备数量：{{devices.length}}</view>
+<view class="blueList" wx:if="{{devices.length > 0}}" wx:for="{{devices}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+    <view>
+        <view class="label">{{item.name}}</view>
+        <button  wx:if="{{!item.active}}" type="primary" class="connectBtn" id="{{item.deviceId}}" bindtap="lanyaconnect">连接</button>
+        <button  wx:if="{{item.active}}" type="warn" class="connectBtn" id="{{item.deviceId}}" bindtap="cancelConnect">断开</button>
+    </view>
+</view>

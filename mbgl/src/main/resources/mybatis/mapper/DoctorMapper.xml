@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--绑定一个对应的Dao/Mapper接口-->
+<mapper namespace="com.hhhhhx.mapper.DoctorMapper">
+
+    <select id="queryDoctorList" resultType="doctor">
+        select * from mbgl.doctor
+    </select>
+
+    <select id="queryDoctorListByName" resultType="doctor">
+        select * from mbgl.doctor where name like concat('%','${name}','%')
+    </select>
+
+    <select id="queryDoctorById" parameterType="int" resultType="doctor">
+        select * from mbgl.doctor where id = #{id}
+    </select>
+
+    <select id="queryDoctorByUserId" parameterType="int" resultType="doctor">
+        select * from mbgl.doctor where userId = #{userId}
+    </select>
+
+    <insert id="addDoctor" parameterType="doctor">
+        insert into mbgl.doctor(id,name,age,sex, phone, room, jobYear, position,hospital)
+        VALUES (#{id},#{name},#{age},#{sex},#{phone},#{room},#{jobYear},#{position},#{hospital})
+    </insert>
+
+    <update id="updateDoctor" parameterType="doctor">
+        update mbgl.doctor set name=#{name},age = #{age}, sex=#{sex}, phone =#{phone},
+        room =#{room},jobYear =#{jobYear},position =#{position},hospital =#{hospital}
+        where id = #{id}
+    </update>
+</mapper>

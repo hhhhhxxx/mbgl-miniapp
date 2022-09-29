@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hhhhhx.mbgl.mapper.PatientMapper">
+
+    <select id="getPatientOfDoctor" resultType="Patient">
+        select p.id,p.name,p.age,p.sex,p.phone,p.address,p.allergy,p.history,p.user_id from mbgl.t_patient p
+        inner join mbgl.t_connect c on c.patient_user_id = p.user_id
+        <where>
+            <if test="true">
+                c.doctor_user_id = #{doctor_user_id}
+            </if>
+            <if test="key != null and key != ''">
+                and p.name like concat('%',#{key},'%')
+            </if>
+        </where>
+    </select>
+
+</mapper>

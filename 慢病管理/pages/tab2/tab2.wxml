@@ -1,0 +1,6 @@
+<block wx:if="{{userRole === 1}}">
+
+</block>
+<block wx:if="{{userRole === 2}}">
+
+</block>

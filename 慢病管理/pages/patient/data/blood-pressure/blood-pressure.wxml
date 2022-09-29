@@ -1,0 +1,4 @@
+
+<navigator url="/pages/patient/data/input/input?field=bloodPressure">
+    <button>输入血压</button>
+</navigator>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--绑定一个对应的Dao/Mapper接口-->
+<mapper namespace="com.hhhhhx.mapper.RecordMapper">
+
+    <select id="getPatientRecordList" parameterType="int" resultType="record">
+        select * from mbgl.record
+        where patientId = #{patientId} and dataId = #{dataId}
+    </select>
+
+    <insert id="addRecord" parameterType="record">
+        insert into mbgl.record(id, dataId, firstValue, secondValue, time, patientId)
+        VALUES (#{id},#{dataId},#{firstValue},#{secondValue},#{time},#{patientId})
+    </insert>
+
+
+
+</mapper>

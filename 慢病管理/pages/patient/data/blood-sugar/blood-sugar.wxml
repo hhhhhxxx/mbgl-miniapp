@@ -1,0 +1,6 @@
+
+
+
+<navigator url="/pages/patient/data/input/input?field=bloodSugar">
+    <button>输入血糖</button>
+</navigator>

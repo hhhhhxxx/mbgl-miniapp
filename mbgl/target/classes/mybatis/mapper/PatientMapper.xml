@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--绑定一个对应的Dao/Mapper接口-->
+<mapper namespace="com.hhhhhx.mapper.PatientMapper">
+
+    <select id="queryPatientList" resultType="patient">
+        select * from mbgl.patient
+    </select>
+
+    <select id="queryPatientById" parameterType="int" resultType="patient">
+        select * from mbgl.patient where id = #{id}
+    </select>
+
+    <select id="queryPatientByUserId" parameterType="int" resultType="patient">
+        select * from mbgl.patient where userId = #{userId}
+    </select>
+
+    <insert id="addPatient" parameterType="patient">
+        insert into mbgl.patient(id, name,age,sex, phone, address, history, allergy)
+        VALUES (#{id},#{name},#{age},#{sex},#{phone},#{address},#{history},#{allergy})
+    </insert>
+
+    <update id="updatePatient" parameterType="patient">
+        update mbgl.patient set name=#{name}, age = #{age}, sex=#{sex}, phone =#{phone},address =#{address},
+                                history =#{history},allergy =#{allergy}
+        where id = #{id}
+    </update>
+</mapper>
