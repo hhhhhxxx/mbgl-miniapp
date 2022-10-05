@@ -56,23 +56,23 @@ Component({
         },
 
         getStep() {
-            const that = this
-            wx.getWeRunData({
-                success(res) {
-                    console.log('微信步数', res)
-
-                    wxApi.getNowStep({
-                        encryptedData: res.encryptedData,
-                        iv: res.iv
-                    }).then(res => {
-                        console.log(res)
-
-                        that.setData({
-                            nowStep: res.response
-                        })
-                    })
-                }
-            })
+            // const that = this
+            // wx.getWeRunData({
+            //     success(res) {
+            //         console.log('微信步数', res)
+            //
+            //         wxApi.getNowStep({
+            //             encryptedData: res.encryptedData,
+            //             iv: res.iv
+            //         }).then(res => {
+            //             console.log(res)
+            //
+            //             that.setData({
+            //                 nowStep: res.response
+            //             })
+            //         })
+            //     }
+            // })
         }
     }
 });

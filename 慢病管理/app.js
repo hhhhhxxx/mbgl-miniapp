@@ -13,11 +13,11 @@ App({
             success(res) {
                 console.log('微信登录返回值', res)
 
-                wxApi.setSessionkey({
-                    code: res.code
-                }).then(res => {
-                    console.log(res)
-                })
+                // wxApi.setSessionkey({
+                //     code: res.code
+                // }).then(res => {
+                //     console.log(res)
+                // })
             }
         })
 

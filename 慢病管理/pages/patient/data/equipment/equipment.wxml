@@ -1,5 +1,7 @@
 <mp-toptips msg="{{info}}" type="error" show="{{info}}" delay="1500"></mp-toptips>
 <view>下拉刷新设备列表</view>
+
+<button bindtap="zhendong">振动</button>
 <view>当前蓝牙设备数量：{{devices.length}}</view>
 <view class="blueList" wx:if="{{devices.length > 0}}" wx:for="{{devices}}" wx:for-item="item" wx:for-index="index" wx:key="index">
     <view>
